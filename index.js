@@ -1,34 +1,60 @@
-//insert data to local storage, use setItem method with 2 params (key: value)
-localStorage.setItem("nome", "jeff")
-localStorage.setItem("name2", "pedro")
-localStorage.setItem("name3", "carlos")
+// //1 - insert data into localStorage
 
-//we can restart the browser without lose the storaged data.
+// localStorage.setItem("NOME", "Jefferson")
 
-//to bring data from storage.
-const teste = localStorage.getItem("nome")
+// //2 - bring item from localStorage
 
-console.log(teste);
+// localStorage.getItem("NOME")
 
-//try to get item that doesn't exists 
+// //3 - bring item that doest exists
 
-const lastName = localStorage.getItem("sobreNome")
+// const dont = localStorage.getItem("iDontExist")
 
-console.log(`this is the result for items that doesn't exists in local storage. > ${lastName} <`); //null
+// //solving
 
-//fixing the null get
-if (!lastName) {
-    console.log('testing');
+// if (!dont) {
+//     console.log('I dont exists!');
+// }
+
+// //removing item
+// localStorage.removeItem("NOME")
+
+// //clear all items
+// localStorage.setItem("A", 1)
+// localStorage.setItem("B", 2)
+
+// localStorage.clear()
+// console.log('cleared all items!');
+
+
+// // =======================================================================================
+
+// sessionStorage.setItem("token", "HI2590128JKSU")
+// // sessionStorage.getItem()
+// // sessionStorage.removeItem()
+// // sessionStorage.clear()
+
+const user = {
+    nome: "Jeff",
+    idade: 23,
+    profissao: "Dev"
 }
 
-const removeMe = "removeMe"
-// clear item
-localStorage.setItem("ItemToRevmove", removeMe)
-localStorage.removeItem("ItemToRevmove")
+const lsKey = "_USER_DATA"
 
-//clear all items
-localStorage.setItem("firstValue", 1)
-localStorage.setItem("secondValue", 2)
+let verify = localStorage.getItem(lsKey)
 
-// Removes all key/value pairs, if there are any.
-localStorage.clear()
+if (!verify) {
+    verify = []
+} else {
+    verify = JSON.parse(verify)
+}
+
+verify.push(user)
+
+localStorage.setItem(lsKey, JSON.stringify(verify))
+
+const teste = localStorage.getItem(lsKey)
+const data = JSON.parse(teste)
+
+console.log(data[0].nome);
